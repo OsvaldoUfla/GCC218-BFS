@@ -23,7 +23,7 @@ int main()
   cin >> n >> m >> l >> p;
   int testes = 0;
 
-  while(n != 0 and p != 0)
+  while(n != 0 and m != 0 and l != 0 and p != 0)
   {
     // alocando as estruturas auxiliares
     int* dist = new int[n+1]; // distancia de todos os vertices em relacao a origem s
@@ -111,10 +111,10 @@ int main()
     {
       cout << respostas[i][j] << " ";
     }
-    if(j == (respostas[i].size() -1))
-{
-  cout << "\n";
-}
+  if(i != (testes -1))
+  {
+    cout << "\n";
+  }
     cout << "\n";
   }
   
