@@ -1,3 +1,6 @@
+/*
+* Osvaldo Rodrigues de Faria Junior 201911203 
+*/
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -6,17 +9,21 @@
 
 using namespace std;
 
+typedef vector<int> vi; // vetor de inteiros
+
 // cores dos vertices
 #define BRANCO 0 // vertice nao descoberto
 #define CINZA 1 // vertice descoberto
 #define PRETO 2 // vertice fechado
 
 int main()
-{  
-  int n, m;
-  cin >> n >> m;
+{ 
+  vector<vi> respostas; 
+  int n, m, l, p;
+  cin >> n >> m >> l >> p;
+  int testes = 0;
 
-  while(n > 0)
+  while(n != 0 and p != 0)
   {
     // alocando as estruturas auxiliares
     int* dist = new int[n+1]; // distancia de todos os vertices em relacao a origem s
@@ -50,7 +57,7 @@ int main()
       lista_adj[v].push_back(u); //v -> u
     }
 
-    int s = 1; // vertice origem
+    int s = l; // vertice origem
     queue<int> fila; // fila de vertices a serem explorados na BFS
     fila.push(s);
     cor[s] = CINZA;
@@ -74,26 +81,39 @@ int main()
           }   
       }
     }
-   
-    cout << "Distancias" << endl;
+
+    vi respostaparcial;
+    
     for(int k = 1; k <= n; k++)
     {
-        cout << "dist[" << k << "]: " << dist[k] << endl;
+      if(dist[k] <= p and ( k!= l))
+      {
+        respostaparcial.push_back(k);
+      }
     }
+    respostas.push_back(respostaparcial);
+    respostaparcial.clear();
+
+    testes++;
    
-    cout << "Pai" << endl;
-    for(int k = 1; k <= n; k++)
-    {
-        cout << "pai[" << k << "]: " << pai[k] << endl;
-    }
-    cout << "*** *** ***" << endl;
    
     delete[] pai;
     delete[] cor;
     delete[] dist;
     
-    cin >> n >> m;
+    cin >> n >> m >> l >> p;
   }
+
+  for(int i=0 ; i < testes ; i++)
+  {
+    cout << "Teste " << i +1 << endl;
+    for(vector<int>::iterator it = respostas[i].begin(); it != respostas[i].end(); ++it)
+    {
+      cout << *it << " ";
+    }
+    cout << endl << endl;
+  }
+  
 
 return 0;
 }
