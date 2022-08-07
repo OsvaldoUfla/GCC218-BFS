@@ -106,18 +106,12 @@ int main()
 
   for(int i=0 ; i < testes ; i++)
   {
-    cout << "Teste " << i +1 <<"\n";
+    cout << "Teste " << i +1 <<endl;
     for(int j= 0 ; j < respostas[i].size() ; j++)
     {
       cout << respostas[i][j] << " ";
     }
-  if(i != (testes -1))
-  {
-    cout << "\n";
+    cout << endl << endl;
   }
-    cout << "\n";
-  }
-  
-
 return 0;
 }
